@@ -11,15 +11,15 @@ export class LoginComponent implements OnInit {
 
   patternPassword = '(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,}';
 
-  constructor(public formBuilder: FormBuilder) {}
-
-  ngOnInit() {
+  constructor(public formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [Validators.required, Validators.pattern(this.patternPassword)],
-      ],
+      password: ['', [Validators.required, Validators.pattern(this.patternPassword)]],
     });
+    
+  }
+
+  ngOnInit() {
+    
   }
 }
