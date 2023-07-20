@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { UserService } from '../user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,9 +16,10 @@ export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;
   patternPassword = '(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,}';
   userData!: any;
+  apiURL = `${environment.apiURL}/signup`;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, public http: HttpClient, private cookieService: CookieService, public router: Router) {
     
     this.signUpForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,6 +48,20 @@ export class SignupComponent implements OnInit {
     }
     )
     
+  }
+
+  onSubmit(){
+
+    console.log(this.signUpForm.value);
+    
+    this.http.post(this.apiURL, this.signUpForm.value).subscribe((response) => {
+      console.log('response correctly received', response);
+
+      
+    }, (error) => {
+      console.log('error', error);
+      
+    })
   }
   
 
