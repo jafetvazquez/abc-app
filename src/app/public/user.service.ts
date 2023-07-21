@@ -19,6 +19,17 @@ export class UserService {
     this.token = cookieService.get('token');
   }
 
+  // servico para iniciar sesión
+  login(loginForm: any){
+    const formData = new FormData();
+
+    formData.append('email', loginForm.email);
+    formData.append('password', loginForm.password);
+
+    return this.http.post<any>(this.apiUrl + '/login', formData);
+  }
+
+  // servicio para registrar un usuario
   registerUser(user: any){
     const url = (`${this.apiUrl}/signup`);
     return this.http.post<any>(url, user);
@@ -29,15 +40,51 @@ export class UserService {
     return this.http.post(url, JSON.stringify(user));
   }
 
-  getRoles(){
-    this.http.get(`${this.apiUrl}/roles`).subscribe(data => {
-      console.log(data);
-      
-    });
 
-    //console.log("data received");
+  // servicio para obtener los roles
+  getRoles(){
+    this.http.get(`${this.apiUrl}/roles`).subscribe((data: any) => {
+      // consultamos los roles en el json
+      const rolAdmin = data[0].rol;
+      const rolUser = data[1].rol;
+      // los guardamos en otro json
+      const allRoles = [rolAdmin, rolUser];
+
+      const rol = allRoles;
+      console.log(rol);
+
+    });
     
   }
+
+
+  // matches los roles
+  rolMatch(allowedRoles: any): boolean | undefined {
+    let isMatch = false;
+    const userRol: any = this.getRoles();
+    return true
+    /*if(userRol != null && userRol){
+      
+      for(let i = 0; i < userRol.length; i++){
+
+        for(let j = 0; j < allowedRoles.length; j++){
+
+          if(userRol[i].rol === allowedRoles[j]){
+            isMatch = true;
+            return isMatch;
+          }else{
+            return isMatch;
+          }
+
+        }
+
+      }
+
+    }*/
+  }
+
+
+
 
   // función para obtener info del usuario
   getUserInfo():Observable<any> | undefined{

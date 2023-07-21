@@ -32,6 +32,10 @@ const routes: Routes = [
     },
     canActivate: [UserGuardGuard]
   },
+  {
+    path: '**',
+    component: LoginComponent
+  },
 ];
 
 @NgModule({

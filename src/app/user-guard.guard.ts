@@ -30,6 +30,25 @@ export class UserGuardGuard implements CanActivate {
     }*/
 
     if(!this.cookie){
+      // consultamos los roles de las rutas (admin, user)
+      const role = route.data['role'] as Array<string>;
+      console.log(this.cookie);
+      console.log(role);
+      
+
+      if(role){
+
+        const match = this.userService.rolMatch(role);
+
+        if(match){
+          return true;
+        }else{
+          this.router.navigate(['/']);
+          return false;
+        }
+
+      }
+
       this.router.navigate(['/']);
       return false
     }

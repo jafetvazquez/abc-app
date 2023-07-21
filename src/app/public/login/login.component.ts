@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import Swal from 'sweetalert2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,9 @@ export class LoginComponent implements OnInit {
   apiURL = `${environment.apiURL}/login`;
   responseToken: any;
   getUser: any;
+  getRol: any;
 
-  constructor(public formBuilder: FormBuilder, private http: HttpClient, private cookieService: CookieService, public router: Router) {
+  constructor(public formBuilder: FormBuilder, private http: HttpClient, private cookieService: CookieService, public router: Router, private userService: UserService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(this.patternPassword)]],
@@ -31,42 +33,51 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
   }
 
+
+  // función al momento de dar clic en iniciar sesión
   onSubmit(){
-    const formData = new FormData();
-
-    formData.append('email', this.loginForm.value.email);
-    formData.append('password', this.loginForm.value.password);
-
-    this.http.post(this.apiURL, formData).subscribe(
-      (res:any) => {
+    this.userService.login(this.loginForm.value).subscribe(
+      (res: any) => {
 
         if(res != null){
-          console.log('respuesta', res.token);
-          console.log('data', res.data[0]);
+          //console.log('respuesta', res.token);
+          //console.log('rol', res.data[0].rol);
           
           this.responseToken = res.token;
-          this.getUser = res.data;
-          this.cookieService.set('token', this.responseToken, 4, '/');
-          this.router.navigate(['/admin']);
+          const rol = this.getRol = res.data[0].rol;
+          //this.getRol = res.data[0].rol;
+          this.cookieService.set('token', this.responseToken, 0.5, '/');
+
+          // if que compara el rol del usuario
+          if(rol === 'admin'){
+            // si es admin nos manda a la ruta del admin
+            this.router.navigate(['/admin'])
+          }else if(rol === 'user'){
+            // si es user nos manda a user
+            this.router.navigate(['/user']);          
+          }else{
+            // si no existe nos deja en el login
+            this.router.navigate(['/']);          
+          }
+
+          
         }else{
           console.log('error');
           this.msgAlert('error', 'Error al iniciar sesión');
-          
         }
 
-        
-        
       }, (error)=> {
         console.log('error', error);
         this.msgAlert('error', 'Error al iniciar sesión');
       }
     )
-
   }
 
+
+  // alerta con sweetAlert
   msgAlert = (icon: any, title: any) =>{
 
     const Toast = Swal.mixin({
