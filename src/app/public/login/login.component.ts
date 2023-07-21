@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   apiURL = `${environment.apiURL}/login`;
   responseToken: any;
+  getUser: any;
 
   constructor(public formBuilder: FormBuilder, private http: HttpClient, private cookieService: CookieService, public router: Router) {
     this.loginForm = this.formBuilder.group({
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     
   }
 
@@ -40,11 +41,14 @@ export class LoginComponent implements OnInit {
     formData.append('password', this.loginForm.value.password);
 
     this.http.post(this.apiURL, formData).subscribe(
-      (res) => {
+      (res:any) => {
 
         if(res != null){
-          //console.log('respuesta', res);
-          this.responseToken = res;
+          console.log('respuesta', res.token);
+          console.log('data', res.data[0]);
+          
+          this.responseToken = res.token;
+          this.getUser = res.data;
           this.cookieService.set('token', this.responseToken, 4, '/');
           this.router.navigate(['/admin']);
         }else{
