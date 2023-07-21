@@ -1,27 +1,27 @@
 <body
-  class="flex flex-col items-center justify-center w-screen h-screen text-gray-700"
+  class="flex flex-col items-center justify-center w-screen h-screen text-gray-700 "
 >
   <!-- Component Start -->
   <h1 class="font-bold text-2xl">ABC APP v1</h1>
-  <form [formGroup]="loginForm" class="flex flex-col bg-white rounded shadow-lg p-12 mt-12" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" class="flex flex-col bg-blue-300 rounded shadow-lg p-12 mt-12" (ngSubmit)="onSubmit()">
 
-    <label class="font-semibold text-xs bg-white" for="email">Email</label>
-    <input id="email" class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" formControlName="email"/>
-    <div class="text-red-600 bg-white">
-      <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="bg-white"> El correo es requerido</div>
-      <div *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched" class="bg-white"> El correo es incorrecto</div>
+    <label class="font-semibold text-xs " for="email">Email</label>
+    <input id="email" class="flex items-center h-12 px-4 w-64 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2" type="text" formControlName="email"/>
+    <div class="text-red-600 ">
+      <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class=""> El correo es requerido</div>
+      <div *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched" class=""> El correo es incorrecto</div>
     </div>
 
-    <label class="font-semibold text-xs mt-3 bg-white" for="password">Contraseña</label>
-    <input id="password" class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" formControlName="password"/>
-    <div class="text-red-600 bg-white">
-      <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="bg-white"> La contraseña es requerida</div>
+    <label class="font-semibold text-xs mt-3 " for="password">Contraseña</label>
+    <input id="password" class="flex items-center h-12 px-4 w-64 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2" type="password" formControlName="password"/>
+    <div class="text-red-600 ">
+      <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class=""> La contraseña es requerida</div>
     </div>
 
 
     <button class="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700" >Login</button>
-    <div class="flex mt-6 justify-center text-xs bg-white">
-      <a class="text-blue-400 hover:text-blue-500 bg-white" routerLink="/signup">Sign Up</a>
+    <div class="flex mt-6 justify-center text-xs ">
+      <a class="text-gray-700 hover:text-white " routerLink="/signup">Sign Up</a>
     </div>
 
   </form>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -29,23 +30,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     
+    
   }
 
-  /*onSubmit(){
-
-    console.log(this.loginForm.value);
-    
-    this.http.post(this.apiURL, this.loginForm.value).subscribe((response) => {
-      console.log('response correctly received', response);
-
-      this.cookieService.set('token_acces', 'ESTO_DEBE SER DINAMICO', 4, '/');
-      this.router.navigate(['/admin'])
-      
-    }, (error) => {
-      console.log('error', error);
-      
-    })
-  }*/
   onSubmit(){
     const formData = new FormData();
 
@@ -62,6 +49,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         }else{
           console.log('error');
+          this.msgAlert('error', 'Error al iniciar sesión');
           
         }
 
@@ -69,9 +57,30 @@ export class LoginComponent implements OnInit {
         
       }, (error)=> {
         console.log('error', error);
-        
+        this.msgAlert('error', 'Error al iniciar sesión');
       }
     )
 
+  }
+
+  msgAlert = (icon: any, title: any) =>{
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+
+    })
+
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
 }

@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;
   patternPassword = '(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,}';
   userData!: any;
-  apiURL = `${environment.apiURL}/signup`;
+  apiURL = (`${environment.apiURL}/signup`);
 
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, public http: HttpClient, private cookieService: CookieService, public router: Router) {
@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     
     //this.postData();
-    this.userService.getUsers();
+    this.userService.getRoles();
 
   }
 

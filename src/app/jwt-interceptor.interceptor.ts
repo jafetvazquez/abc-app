@@ -26,6 +26,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
     )
     
     request = currentRequest;
+    
 
     return next.handle(request);
   }
