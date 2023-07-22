@@ -29,16 +29,20 @@ export class UserService {
     return this.http.post<any>(this.apiUrl + '/login', formData);
   }
 
+
   // servicio para registrar un usuario
-  registerUser(user: any){
+  registerUser(signUpForm: any){
+    const formData = new FormData();
+
+    formData.append('name', signUpForm.name);
+    formData.append('username', signUpForm.username);
+    formData.append('email', signUpForm.email);
+    formData.append('password', signUpForm.password);
+
     const url = (`${this.apiUrl}/signup`);
-    return this.http.post<any>(url, user);
+    return this.http.post<any>(url, formData);
   }
 
-  createUser(user: any){
-    const url = (`${this.apiUrl}/signup`);
-    return this.http.post(url, JSON.stringify(user));
-  }
 
 
   // servicio para obtener los roles
@@ -51,7 +55,7 @@ export class UserService {
       const allRoles = [rolAdmin, rolUser];
 
       const rol = allRoles;
-      console.log(rol);
+      //console.log(rol);
 
     });
     
