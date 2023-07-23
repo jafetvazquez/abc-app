@@ -29,6 +29,12 @@ export class UserService {
     return this.http.post<any>(this.apiUrl + '/login', formData);
   }
 
+  // servicio para cerrar sesión
+  logout(){
+    // borramos la cookie
+    this.cookieService.delete('token');
+  }
+
 
   // servicio para registrar un usuario
   registerUser(signUpForm: any){
@@ -66,7 +72,7 @@ export class UserService {
   rolMatch(allowedRoles: any): boolean | undefined {
     let isMatch = false;
     const userRol: any = this.getRoles();
-    return true
+    return false
     /*if(userRol != null && userRol){
       
       for(let i = 0; i < userRol.length; i++){

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { UserService } from './public/user.service';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserGuardGuard implements CanActivate {
+export class AdminGuardGuard implements CanActivate {
 
   private cookie: string | null = this.cookieService.get('token');
 
@@ -16,8 +17,7 @@ export class UserGuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //return true;
-    return this.checkCookie(route);
+    return this.checkCookie(route)
   }
 
   private checkCookie(route: ActivatedRouteSnapshot): boolean{
@@ -49,8 +49,8 @@ export class UserGuardGuard implements CanActivate {
       //console.log(role);
 
 
-      if(userRol === 'user'){
-        //this.router.navigate(['/user']);
+      if(userRol === 'admin'){
+
         return true;
 
       }else{
@@ -63,6 +63,6 @@ export class UserGuardGuard implements CanActivate {
     
   }
 
-  
+
   
 }

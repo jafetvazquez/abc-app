@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(){
 
-    if(this.signUpForm.valid){
+    if(this.signUpForm){
       this.userService.registerUser(this.signUpForm.value).subscribe(
         (res) => {
           //console.log('response', res);

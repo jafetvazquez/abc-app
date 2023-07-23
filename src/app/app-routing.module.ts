@@ -6,6 +6,8 @@ import { SignupComponent } from './public/signup/signup.component';
 import { AdminComponent } from './private/admin/admin.component';
 import { UserComponent } from './private/user/user.component';
 import { UserGuardGuard } from './user-guard.guard';
+import { AdminGuardGuard } from './admin-guard.guard';
+import { ErrorComponent } from './public/error/error.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,7 @@ const routes: Routes = [
     data: {
       role: 'admin'
     },
-    canActivate: [UserGuardGuard]
+    canActivate: [AdminGuardGuard]
   },
   {
     path: 'user',
@@ -33,8 +35,12 @@ const routes: Routes = [
     canActivate: [UserGuardGuard]
   },
   {
+    path: 'error-404',
+    component: ErrorComponent
+  },
+  {
     path: '**',
-    component: LoginComponent
+    component: ErrorComponent
   },
 ];
 
