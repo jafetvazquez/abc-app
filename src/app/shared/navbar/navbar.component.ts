@@ -28,10 +28,18 @@ export class NavbarComponent implements OnInit {
         this.userService.logout();
         this.msgAlert('success', 'Sesión cerrada');
         this.router.navigate(['/']);
+        this.reloadPage();
       }
     })
     //console.log('cerrar sesión');
     
+  }
+
+  reloadPage(){
+    const secToWait = 3;
+    setTimeout(() => {
+      window.location.reload();
+    }, secToWait * 1000);
   }
 
 

@@ -34,7 +34,7 @@ export class AdminGuardGuard implements CanActivate {
 
     if(!isAuth){
       // si no esta autentificado lo regresa
-      this.router.navigate(['/error-404']);
+      this.router.navigate(['/']);
       return false;
     }else{
       // decodificamos el token
