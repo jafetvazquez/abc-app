@@ -34,7 +34,7 @@ export class UserGuardGuard implements CanActivate {
 
     if(!isAuth){
       // si no esta autentificado lo regresa
-      this.router.navigate(['/']);
+      this.router.navigate(['/error-404']);
       return false;
     }else{
       // decodificamos el token
