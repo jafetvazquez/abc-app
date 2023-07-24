@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment.prod';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable, catchError, of } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,18 @@ export class UserService {
 
     });
     
+  }
+
+  // servicio para obtener los roles
+  getUserData(id: number){
+    const url = `${this.apiUrl}/users/`;
+    this.http.get<any>(url + id).subscribe(
+      (user: any) => {
+        console.log(user);
+      }, (error) =>{
+        console.log(error);
+        }
+      )
   }
 
 

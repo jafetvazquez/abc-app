@@ -8,6 +8,8 @@ import { UserComponent } from './private/user/user.component';
 import { UserGuardGuard } from './user-guard.guard';
 import { AdminGuardGuard } from './admin-guard.guard';
 import { ErrorComponent } from './public/error/error.component';
+import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component';
+import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,22 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    data: {
+      role: 'admin'
+    },
+    canActivate: [AdminGuardGuard]
+  },
+  {
+    path: 'admin/new_blog',
+    component: NewBlogComponent,
+    data: {
+      role: 'admin'
+    },
+    canActivate: [AdminGuardGuard]
+  },
+  {
+    path: 'admin/edit_blog/:id',
+    component: EditBlogComponent,
     data: {
       role: 'admin'
     },

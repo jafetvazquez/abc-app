@@ -1,0 +1,56 @@
+<body
+  class="flex flex-col items-center justify-center w-screen h-screen text-gray-700"
+>
+  <!-- Component Start -->
+  <h1 class="font-bold text-2xl pt-16">Crear nuevo blog</h1>
+
+  <form [formGroup]="newBlog" class="flex flex-col bg-blue-300 rounded shadow-lg p-12 mt-12 w-[60%]" (ngSubmit)="onSubmit()">
+
+    <!-- titulo -->
+    <label class="font-semibold text-xs " for="title">Título</label>
+    <input id="title" class="flex items-center h-12 px-4 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2 w-full" type="text" formControlName="title"/>
+    <div class="text-red-600 ">
+      <div *ngIf="newBlog.controls['title'].hasError('required') && newBlog.controls['title'].touched" class=""> El título es requerido</div>
+      <div *ngIf="newBlog.controls['title'].hasError('minlength')" class=""> El título necesita al menos 5 caracteres</div>
+    </div>
+
+    <!-- contenido -->
+    <label class="font-semibold text-xs mt-3 " for="content">Contenido</label>
+    <textarea class="flex items-center px-4 bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2 w-full" formControlName="content" id="content" cols="30" rows="10"></textarea>
+    <div class="text-red-600 ">
+      <div *ngIf="newBlog.controls['content'].hasError('required') && newBlog.controls['content'].touched" class=""> El contenido es requerido</div>
+      <div *ngIf="newBlog.controls['content'].hasError('minlength')" class=""> El contenido necesita al menos 30 caracteres</div>
+    </div>
+
+    <!-- autor -->
+    <label class="font-semibold text-xs mt-3 " for="autor">Autor</label>
+    <input id="autor" class="flex items-center h-12 px-4 w-full bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2" type="text" formControlName="autor"/>
+    <div class="text-red-600 ">
+      <div *ngIf="newBlog.controls['autor'].hasError('required') && newBlog.controls['autor'].touched" class=""> El autor es requerido</div>
+    </div>
+
+    <!-- categoria -->
+    <label class="font-semibold text-xs mt-3 " for="category">Categoria</label>
+    <input id="category" class="flex items-center h-12 px-4 w-full bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2" type="text" formControlName="category"/>
+    <div class="text-red-600 ">
+      <div *ngIf="newBlog.controls['category'].hasError('required') && newBlog.controls['category'].touched" class=""> La categoria es requerida</div>
+      <div *ngIf="newBlog.controls['category'].hasError('minlength')" class=""> La categoria necesita al menos 5 caracteres</div>
+    </div>
+
+    <!-- fecha -->
+    <label class="font-semibold text-xs mt-3 " for="date">Fecha</label>
+    <input id="date" class="flex items-center h-12 px-4 w-full bg-gray-100 mt-2 rounded focus:outline-none focus:ring-2" type="date" formControlName="date"/>
+    <div class="text-red-600 ">
+      <div *ngIf="newBlog.controls['date'].hasError('required') && newBlog.controls['date'].touched" class=""> La fecha es requerida</div>
+    </div>
+
+
+    <div class="flex flex-col justify-center items-center">
+        <button class="flex flex-col items-center justify-center text-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Crear Blog</button>
+    </div>
+    
+    </form>
+  <!-- Component End  -->
+</body>
+
+

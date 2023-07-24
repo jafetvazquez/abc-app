@@ -10,11 +10,36 @@ import { CookieService } from 'ngx-cookie-service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorInterceptor } from './jwt-interceptor.interceptor';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { UserRoleDirective } from './user-role.directive';
+import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component';
+import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, UserComponent, NavbarComponent],
-  imports: [BrowserModule, AppRoutingModule, PublicModule, HttpClientModule],
-  providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true}],
-  bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    AdminComponent,
+    UserComponent,
+    NavbarComponent,
+    UserRoleDirective,
+    EditBlogComponent,
+    NewBlogComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PublicModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    CookieService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true}],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: [
+    UserRoleDirective
+  ]
 })
 export class AppModule {}

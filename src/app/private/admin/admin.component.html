@@ -5,9 +5,9 @@
     
     <div class="container px-5 pt-12 pb-24 mx-auto py-2">
 
-        <button class="bg-blue-800 hover:shadow-lg  mx-auto p-2 px-2 rounded-lg text-white mb-2">Crear Blog</button>
+        <button class="bg-blue-800 hover:shadow-lg  mx-auto p-2 px-2 rounded-lg text-white mb-2" routerLink="new_blog">Crear Blog</button>
 
-        <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of data">
+        <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of data" (click)="selectBlog(item.id)">
             <div class="py-8 flex flex-wrap md:flex-nowrap">
             <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                 <span class="font-semibold title-font text-blue-300" >{{ item.category }}</span>
