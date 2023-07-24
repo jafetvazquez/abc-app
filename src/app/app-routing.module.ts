@@ -10,6 +10,7 @@ import { AdminGuardGuard } from './admin-guard.guard';
 import { ErrorComponent } from './public/error/error.component';
 import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component';
 import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
+import { VerBlogComponent } from './private/admin/ver-blog/ver-blog.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,14 @@ const routes: Routes = [
   {
     path: 'admin/new_blog',
     component: NewBlogComponent,
+    data: {
+      role: 'admin'
+    },
+    canActivate: [AdminGuardGuard]
+  },
+  {
+    path: 'admin/blog/:id',
+    component: VerBlogComponent,
     data: {
       role: 'admin'
     },

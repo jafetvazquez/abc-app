@@ -32,13 +32,19 @@ export class BlogsService {
 
   // obtner data al buscar
   searchBlog(query: string){
-    const newURL = `${this.apiURL}/search?title=`;
+    const newURL = (`${this.apiURL}/search?title=`);
     return this.http.get<any[]>(newURL + query);
   }
 
   // mostrar busqueda
   setResultsSearch(resultados: any[]){
     this.resultsSearch = resultados;
+  }
+
+  // obtener data mediante id
+  getBlogById(id: number){
+    const newURL = (`${this.apiURL}/blogs/${id}`);
+    return this.http.get<any[]>(newURL);
   }
 
 }
