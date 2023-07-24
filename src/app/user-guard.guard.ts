@@ -45,7 +45,7 @@ export class UserGuardGuard implements CanActivate {
 
       // consultamos los roles de las rutas (admin, user)
       const role = route.data['role'] as Array<string>;
-      console.log(userRol);
+      //console.log(userRol);
       //console.log(role);
 
 

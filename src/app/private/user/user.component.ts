@@ -8,11 +8,14 @@ import { BlogsService } from '../blogs.service';
 })
 export class UserComponent implements OnInit {
   data!: any[];
+  results!: any[];
 
   constructor(private blogService: BlogsService) { }
 
   ngOnInit(): void {
     this.loadData();
+
+    this.results = this.blogService.resultsSearch;
   }
 
 

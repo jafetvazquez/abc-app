@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BlogsService } from 'src/app/private/blogs.service';
 import { UserService } from 'src/app/public/user.service';
 import Swal from 'sweetalert2';
 
@@ -9,12 +10,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  results!: any[];
+  query!: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private blogService: BlogsService) { }
 
   ngOnInit(): void {
   }
 
+  // buscar data
+  searchBlogs(){
+    this.blogService.searchBlog(this.query).subscribe(
+      (blog: any) => {
+        this.blogService.setResultsSearch(blog);
+        //this.results = blog;
+        console.log(blog);
+      }, (error) => {
+        console.log('error', error);
+        
+      }
+    )
+  }
+
+  // cerrar sesión
   logout(){
     Swal.fire({
       title: '¿Cerrar sesión?',

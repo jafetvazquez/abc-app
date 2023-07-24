@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class BlogsService {
   private apiURL = environment.apiURL;
+  resultsSearch!: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +34,11 @@ export class BlogsService {
   searchBlog(query: string){
     const newURL = `${this.apiURL}/search?title=`;
     return this.http.get<any[]>(newURL + query);
+  }
+
+  // mostrar busqueda
+  setResultsSearch(resultados: any[]){
+    this.resultsSearch = resultados;
   }
 
 }
