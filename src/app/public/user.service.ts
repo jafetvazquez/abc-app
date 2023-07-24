@@ -71,13 +71,7 @@ export class UserService {
   // servicio para obtener los roles
   getUserData(id: number){
     const url = `${this.apiUrl}/users/`;
-    this.http.get<any>(url + id).subscribe(
-      (user: any) => {
-        console.log(user);
-      }, (error) =>{
-        console.log(error);
-        }
-      )
+    return this.http.get<any>(url + id);
   }
 
 

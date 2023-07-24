@@ -10,7 +10,7 @@ import { AdminGuardGuard } from './admin-guard.guard';
 import { ErrorComponent } from './public/error/error.component';
 import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component';
 import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
-import { VerBlogComponent } from './private/admin/ver-blog/ver-blog.component';
+import { VerBlogComponent } from './private/user/ver-blog/ver-blog.component';
 
 const routes: Routes = [
   {
@@ -56,6 +56,14 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    data: {
+      rol: 'user'
+    },
+    canActivate: [UserGuardGuard]
+  },
+  {
+    path: 'user/blog/:id',
+    component: VerBlogComponent,
     data: {
       rol: 'user'
     },

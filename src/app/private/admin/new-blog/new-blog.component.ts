@@ -15,6 +15,7 @@ export class NewBlogComponent implements OnInit {
   newBlog!: FormGroup;
   data!: any[];
   userId!: number;
+  userData!: any[];
 
 
 
@@ -33,7 +34,16 @@ export class NewBlogComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.userService.getUserData(1);
+    this.userService.getUserData(1).subscribe(
+      (user:any) => {
+        this.userData = user.name;
+        //console.log(this.userData);
+        
+      }, (err) => {
+        console.error(err);
+        
+      }
+    )
   }
 
   onSubmit(){

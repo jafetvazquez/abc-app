@@ -36,7 +36,7 @@
         
 >
 
-        <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of data" (click)="selectBlog(item.id)">
+        <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of data" [routerLink]="['blog', item.id]">
             <div class="py-8 flex flex-wrap md:flex-nowrap">
             <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                 <span class="font-semibold title-font text-blue-300" >{{ item.category }}</span>

@@ -14,8 +14,10 @@ export class VerBlogComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // obtenemos id
     const blogId = this.route.snapshot.params['id'];
 
+    // cargamos la data del blog al cargar la vista
     this.blogService.getBlogById(blogId).subscribe(
       (blog: any) => {
         this.blog = blog;
