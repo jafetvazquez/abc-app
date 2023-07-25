@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogsService } from '../blogs.service';
+import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,11 +10,15 @@ import { BlogsService } from '../blogs.service';
 })
 export class AdminComponent implements OnInit {
   data!: any[];
+  results!: any[];
+  private subscription!: Subscription;
 
-  constructor(private blogService: BlogsService) { }
+  constructor(private blogService: BlogsService, private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.loadData();
+
+    this.loadSearch();
   }
 
   // dargar info de los blogs
@@ -28,6 +34,16 @@ export class AdminComponent implements OnInit {
         
       }
     )
+  }
+
+  // load busqueda
+  loadSearch(){
+    this.subscription = this.sharedService.getResultadosBusqueda().subscribe(
+      (res: any) => {
+      this.results = res;
+    }, (error) => {
+      console.error(error);
+    })
   }
 
   selectBlog(id: number){

@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
         this.sharedService.setResultadoBusqueda(blog);
         //this.blogService.setResultsSearch(blog);
         //this.results = blog;
-        console.log(blog);
+        //console.log(blog);
       }, (error) => {
         console.log('error', error);
         
