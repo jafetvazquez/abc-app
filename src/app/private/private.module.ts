@@ -3,19 +3,23 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { VerBlogComponent } from './admin/ver-blog/ver-blog.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    VerBlogComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterModule
+
   ],
+  exports:[
+    RouterModule
+  ]
   
 })
 export class PrivateModule { }

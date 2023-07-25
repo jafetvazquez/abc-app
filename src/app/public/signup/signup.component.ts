@@ -24,9 +24,9 @@ export class SignupComponent implements OnInit {
     
     this.signUpForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      username: ['', [Validators.required, Validators.minLength(3), this.noEspacios]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.pattern(this.patternPassword)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
 
     })
 
@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(){
 
-    if(this.signUpForm){
+    if(this.signUpForm.valid){
       this.userService.registerUser(this.signUpForm.value).subscribe(
         (res) => {
           //console.log('response', res);

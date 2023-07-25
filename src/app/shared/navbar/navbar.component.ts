@@ -41,7 +41,9 @@ export class NavbarComponent implements OnInit {
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Si',
+      confirmButtonColor: '#1d4ed8',
       denyButtonText: `No`,
+      denyButtonColor: '#71717a',
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

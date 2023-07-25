@@ -15,6 +15,8 @@ import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component
 import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { VerBlogComponentAdmin } from './private/admin/ver-blog/ver-blog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { CommonModule } from '@angular/common';
     UserRoleDirective,
     EditBlogComponent,
     NewBlogComponent,
+    VerBlogComponentAdmin
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   providers: [
     CookieService,

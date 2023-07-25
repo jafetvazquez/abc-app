@@ -7,6 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './error/error.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { ErrorComponent } from './error/error.component';
     PublicRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    RouterModule
   ],
 
 })

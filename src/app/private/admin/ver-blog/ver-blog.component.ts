@@ -7,7 +7,7 @@ import { BlogsService } from '../../blogs.service';
   templateUrl: './ver-blog.component.html',
   styleUrls: ['./ver-blog.component.css']
 })
-export class VerBlogComponent implements OnInit {
+export class VerBlogComponentAdmin implements OnInit {
   blog!: any;
 
   constructor(private route: ActivatedRoute, private blogService: BlogsService) { }
