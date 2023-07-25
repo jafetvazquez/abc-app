@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogsService } from '../../blogs.service';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-ver-blog',

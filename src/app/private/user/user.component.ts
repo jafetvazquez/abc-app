@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogsService } from '../blogs.service';
+import { SharedService } from 'src/app/shared/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -9,13 +11,19 @@ import { BlogsService } from '../blogs.service';
 export class UserComponent implements OnInit {
   data!: any[];
   results!: any[];
+  private subscription!: Subscription;
 
-  constructor(private blogService: BlogsService) { }
+  constructor(private blogService: BlogsService, private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.loadData();
 
-    this.results = this.blogService.resultsSearch;
+    this.loadSearch();
+    
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 
@@ -32,6 +40,16 @@ export class UserComponent implements OnInit {
         
       }
     )
+  }
+
+
+  // load busqueda
+  loadSearch(){
+    this.subscription = this.sharedService.getResultadosBusqueda().subscribe((res: any) => {
+      this.results = res;
+    }, (error) => {
+      console.error(error);
+    })
   }
 
   selectBlog(id: number){

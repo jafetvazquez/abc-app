@@ -14,6 +14,7 @@ import { UserRoleDirective } from './user-role.directive';
 import { EditBlogComponent } from './private/admin/edit-blog/edit-blog.component';
 import { NewBlogComponent } from './private/admin/new-blog/new-blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     UserRoleDirective,
     EditBlogComponent,
-    NewBlogComponent
+    NewBlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PublicModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [
     CookieService,

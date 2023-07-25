@@ -13,7 +13,8 @@ import { VerBlogComponent } from './admin/ver-blog/ver-blog.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   
 })

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BlogsService } from 'src/app/private/blogs.service';
 import { UserService } from 'src/app/public/user.service';
 import Swal from 'sweetalert2';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   results!: any[];
   query!: string;
 
-  constructor(private userService: UserService, private router: Router, private blogService: BlogsService) { }
+  constructor(private userService: UserService, private router: Router, private blogService: BlogsService, private sharedService: SharedService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,8 @@ export class NavbarComponent implements OnInit {
   searchBlogs(){
     this.blogService.searchBlog(this.query).subscribe(
       (blog: any) => {
-        this.blogService.setResultsSearch(blog);
+        this.sharedService.setResultadoBusqueda(blog);
+        //this.blogService.setResultsSearch(blog);
         //this.results = blog;
         console.log(blog);
       }, (error) => {

@@ -3,12 +3,12 @@
     <h1 class="flex flex-col font-bold text-3xl text-gray-800 items-center justify-center">BLOGS</h1>
 
     
-    <div class="container px-5 pt-12 pb-24 mx-auto py-2">
+    <div class="container px-5 pt-12 pb-24 mx-auto">
 
-        <div *ngIf="results && results.length > 0">
+        <div *ngIf="results && results.length > 0" class="pb-24">
 
-            <h2>Resultados:</h2>
-            <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of results">
+            <h2 class="text-black">Resultados:</h2>
+            <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of results" [routerLink]="['blog', item.id]">
                 <div class="py-8 flex flex-wrap md:flex-nowrap">
                 <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                     <span class="font-semibold title-font text-blue-300" >{{ item.category }}</span>
@@ -29,13 +29,11 @@
             
         </div>
 
-        <div *ngIf="results && results.length === 0">
-            <p>no hay resultados</p>
+        <div *ngIf="results && results.length === 0" class="pb-24">
+            <p class="text-black">no hay resultados</p>
         </div>
 
         
->
-
         <div class=" divide-gray-800 cursor-pointer rounded-lg hover:bg-gray-100" *ngFor="let item of data" [routerLink]="['blog', item.id]">
             <div class="py-8 flex flex-wrap md:flex-nowrap">
             <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
