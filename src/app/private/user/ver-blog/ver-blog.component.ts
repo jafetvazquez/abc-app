@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogsService } from '../../blogs.service';
 import { SharedService } from 'src/app/shared/shared.service';
 
@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/shared/shared.service';
 export class VerBlogComponent implements OnInit {
   blog!: any;
 
-  constructor(private route: ActivatedRoute, private blogService: BlogsService) { }
+  constructor(private route: ActivatedRoute, private blogService: BlogsService, private ruta: Router, private sharedService: SharedService) { }
 
   ngOnInit(): void {
 
@@ -30,6 +30,42 @@ export class VerBlogComponent implements OnInit {
       }
     )
 
+  }
+
+
+  // buscar mediante tags
+  openTag(tag: string){
+    this.ruta.navigate(['/user'])
+
+    this.blogService.searchByTag(tag).subscribe(
+      (blog: any) => {
+        this.sharedService.setResultadoBusqueda(blog);
+        //console.log(blog);
+        
+      }, (err) => {
+        console.error(err);
+        
+      }
+    )
+    
+  }
+
+
+  // buscar mediante tags
+  searchDate(date: string){
+    this.ruta.navigate(['/user'])
+
+    this.blogService.searchByDate(date).subscribe(
+      (blog: any) => {
+        this.sharedService.setResultadoBusqueda(blog);
+        //console.log(blog);
+        
+      }, (err) => {
+        console.error(err);
+        
+      }
+    )
+    
   }
 
 }

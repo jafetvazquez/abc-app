@@ -36,6 +36,18 @@ export class BlogsService {
     return this.http.get<any[]>(newURL + query);
   }
 
+  // obtner data al buscar por tag
+  searchByTag(query: string){
+    const newURL = (`${this.apiURL}/search?category=`);
+    return this.http.get<any[]>(newURL + query);
+  }
+
+  // obtner data al buscar por date
+  searchByDate(date: string){
+    const newURL = (`${this.apiURL}/search?date=`);
+    return this.http.get<any[]>(newURL + date);
+  }
+
   // mostrar busqueda
   setResultsSearch(resultados: any[]){
     this.resultsSearch = resultados;

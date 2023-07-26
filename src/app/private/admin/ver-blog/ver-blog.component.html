@@ -10,7 +10,7 @@
             <p class="text-sm">by
                 <a rel="noopener noreferrer" class="hover:underline text-blue-700 cursor-pointer">
                 <span>{{ blog.autor }}</span>
-            </a> • {{ blog.date }}</p>
+            </a> • <a rel="noopener noreferrer" class="hover:underline hover:text-blue-700 cursor-pointer" (click)="searchDate(blog.date)">{{ blog.date }}</a></p>
         </div>
         <p class="flex-shrink-0 mt-3 text-sm md:mt-0">4 min lectura • 1,570 views</p>
         </div>
@@ -21,7 +21,7 @@
 
         <div class="flex flex-col pt-[3%]">
             <div class="flex flex-wrap py-6 space-x-2 border-t border-dashed dark:border-gray-400">
-                <a rel="noopener noreferrer" class="px-3 py-1 rounded-sm hover:underline bg-blue-300 text-gray-600 cursor-pointer">#{{ blog.category }} </a>
+                <a rel="noopener noreferrer" class="px-3 py-1 rounded-sm hover:underline bg-blue-300 text-gray-600 cursor-pointer" (click)="openTag(blog.category)">#{{ blog.category }} </a>
             </div>
         </div>
 
