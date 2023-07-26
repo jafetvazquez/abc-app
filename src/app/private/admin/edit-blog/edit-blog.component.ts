@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogsService } from '../../blogs.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +16,7 @@ export class EditBlogComponent implements OnInit {
   blogId!: number;
   userData!: any[];
 
-  constructor(private formBuilder: FormBuilder, private blogService: BlogsService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private blogService: BlogsService, private route: ActivatedRoute, private router: Router) {
 
     this.editBlog = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -69,7 +69,7 @@ export class EditBlogComponent implements OnInit {
         confirmButtonText: 'Sí, editar!'
       }).then((result) => {
         if (result.isConfirmed) {
-
+          this.router.navigate(['/admin']);
           this.blogService.updateBlog(this.blog.id, this.blog).subscribe(
             (res) => {
               //console.log(this.blog);
