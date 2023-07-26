@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           this.responseToken = res.token;
           const rol = this.getRol = res.data[0].rol;
           //this.getRol = res.data[0].rol;
+          // guardamos en la cookie el token, la res y el tiempo
           this.cookieService.set('token', this.responseToken, 0.5, '/');
 
           // if que compara el rol del usuario

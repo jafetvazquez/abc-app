@@ -48,12 +48,13 @@ export class AdminGuardGuard implements CanActivate {
       //console.log(userRol);
       //console.log(role);
 
-
+      // si el rol en jwt es
       if(userRol === 'admin'){
-
+        // admin retorna true
         return true;
 
       }else{
+        // si es false, nos manda a error 404
         this.router.navigate(['/error-404']);
         return false
       }
