@@ -59,6 +59,12 @@ export class BlogsService {
     return this.http.get<any[]>(newURL);
   }
 
+  // obtener data mediante id
+  deleteBlog(id: number){
+    const newURL = (`${this.apiURL}/deleteBlog/${id}`);
+    return this.http.get<any[]>(newURL);
+  }
+
 
   // obtener data mediante id
   updateBlog(id: number, blog: any){
