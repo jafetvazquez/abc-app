@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.initAlert();
 
   }
 
@@ -99,4 +99,32 @@ export class LoginComponent implements OnInit {
       title: title
     })
   }
+
+  initAlert(){
+    Swal.fire({
+      title: 'Aviso',
+      text: 'Este proyecto no está conectado a la API. Puedes acceder y configurar la API desde GitHub.',
+      icon: 'warning',
+      iconColor: '#93c5fd',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#1d4ed8'
+    });
+  }
+
+  gitProject(){
+    Swal.fire({
+      title: 'Git Project',
+      showConfirmButton: false,
+      showDenyButton: false,
+      showCloseButton: false,
+      html:
+
+        `<div class="relative flex-col grid grid-cols-2 gap-4">
+        <button class="col-span-1 w-full relative flex flex-col items-center justify-center h-10   bg-blue-700 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-800" onclick=window.open("https://github.com/jafetvazquez/abc-app")>ABC APP</button>
+        <button class="col-span-1 w-full relative flex flex-col items-center justify-center h-10   bg-blue-700 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-800" onclick=window.open("https://github.com/jafetvazquez/abc_API-v1") target="_blank">ABC API</button>
+        </div>`
+
+    })
+  }
+
 }
